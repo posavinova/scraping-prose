@@ -12,7 +12,7 @@ topic = "02"
 start_urls = [f"https://proza.ru/texts/list.html?topic={topic}"]
 ```
 
->####*List of web-site's topics:*
+>### *List of web-site's topics:*
 >- *05* - миниатюры
 >- *21* - новеллы 
 >- *02* - рассказы
@@ -60,7 +60,7 @@ CONNECTION_STRING = "sqlite:///proza_ru.db"
 ```
 DB schema:
 
-![db_schema](images\db_schema.png)
+![db_schema](/images/db_schema.png)
 ***
 Test database file with 4k short stories is among the project files (`proza_ru_short_stories.db`)
 ***
