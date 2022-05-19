@@ -27,11 +27,13 @@ class StoriesSpider(scrapy.Spider):
 
             yield response.follow(story_url, self.parse_story, cb_kwargs={"stories_item": stories_item})
 
-        for page in response.css("a[href*='start']::attr(href)"):
+        pages = response.css("a[href*='start']::attr(href)").getall()
+        for page in pages:
             yield response.follow(page, self.parse)
 
-        for day in response.css("div.textlink a[href*='day']::attr(href)"):
-            yield response.follow(day, self.parse)
+        prev_day = response.css("div.textlink > a:nth-child(1)::attr(href)").get()
+
+        yield response.follow(prev_day, self.parse)
 
     def parse_story(self, response, stories_item):
         loader = ItemLoader(item=stories_item, response=response, selector=response)
